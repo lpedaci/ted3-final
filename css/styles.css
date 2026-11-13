@@ -473,7 +473,7 @@ textarea::placeholder { color: var(--gray-dark); }
   background: radial-gradient(circle, #FCFCFC 0 22%, #B8E8FC 34%, rgba(60, 188, 252, .55) 52%, rgba(60, 188, 252, 0) 72%);
   animation: ada-breathe 2.4s ease-in-out infinite;
 }
-.ada-logo { position: relative; width: 34px; height: 34px; color: #0C0C3C; }
+.ada-logo { position: relative; width: 34px; height: 34px; color: #0C0C3C; --ada-core: #DCF2FC; }
 .ada-spark {
   position: absolute; top: 50%; left: 50%; width: 5px; height: 5px; margin: -2px;
   background: #FCFCFC; box-shadow: 0 0 6px 2px rgba(184, 232, 252, .9);
@@ -497,7 +497,7 @@ textarea::placeholder { color: var(--gray-dark); }
   position: relative;
   width: min(340px, calc(100vw - 32px));
   padding: 14px 16px 16px;
-  background: var(--panel);
+  background: var(--black);
   clip-path: var(--notch);
   box-shadow: inset 0 0 0 2px var(--black), inset 0 0 0 4px #B8E8FC, inset 0 0 0 6px var(--black);
   animation: rise .25s steps(3) both;
@@ -507,6 +507,10 @@ textarea::placeholder { color: var(--gray-dark); }
 .ada-name { display: block; font: 400 18px/1 var(--pixel); letter-spacing: .12em; text-transform: uppercase; color: #B8E8FC; margin-bottom: 6px; }
 .ada[data-mood="key"] .ada-name { color: var(--green-hi); }
 .ada[data-mood="error"] .ada-name { color: var(--red-text); }
+.ada-name small { display: block; margin-top: 3px; font-size: 16px; letter-spacing: .06em; text-transform: none; color: var(--gray); }
+.ada-intro { margin: 0 0 10px; padding-bottom: 10px; font-size: 15px; line-height: 1.45; color: var(--white);
+  background: linear-gradient(90deg, var(--gray-deep) 50%, transparent 50%) bottom / 8px 2px repeat-x; }
+.ada[data-mood="intro"] .ada-text { color: var(--cream); }
 .ada-text { margin: 0; font-size: 15px; line-height: 1.45; color: var(--white); }
 
 @keyframes ada-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }

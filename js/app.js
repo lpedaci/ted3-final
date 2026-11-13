@@ -289,3 +289,4 @@ function copyFrase() {
 
 refresh();
 booted = true;
+if (typeof Ada !== "undefined") Ada.intro();

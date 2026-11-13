@@ -1,18 +1,24 @@
 /* Final de recorrido · Ada, la asistente del equipo, como guía flotante.
-   Una luz con el logo de Ada que acompaña el recorrido: al tocarla muestra la pista
-   de la sala actual, y avisa sola cuando se gana una llave o hay un error de orden.
-   Usa los mismos textos del recorrido (js/content.js); no agrega consignas nuevas. */
+   Ada es la asistente que creó el equipo Enlace Pedagógico para la cursada
+   «IA Generativa en el Aula». Acá acompaña el recorrido: se presenta la primera vez,
+   al tocarla muestra la pista de la sala actual y avisa sola cuando se gana una
+   llave o hay un error de orden. Las pistas usan los textos del recorrido. */
 
-/* Logo de Ada: cinco nodos unidos, redibujado en vectores. */
-const ADA_LOGO = '<svg class="ada-logo" viewBox="30 24 62 68" aria-hidden="true" focusable="false">' +
-  '<g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">' +
-    '<path d="M39 44L61 34L82 47L71 82L51 66L39 44M51 66L82 47"></path>' +
-  '</g>' +
-  '<g fill="var(--ada-core, #24185C)" stroke="currentColor" stroke-width="4.5">' +
-    '<circle cx="61" cy="34" r="6"></circle><circle cx="39" cy="44" r="6"></circle>' +
-    '<circle cx="82" cy="47" r="6"></circle><circle cx="51" cy="66" r="6.5"></circle>' +
-    '<circle cx="71" cy="82" r="6.5"></circle>' +
-  '</g></svg>';
+/* Logo original de Ada (nodos conectados), tal como en la asistente de la cursada. */
+const ADA_LOGO = '<svg class="ada-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' +
+  '<line x1="5.5" y1="6.5" x2="12" y2="4.5"/><line x1="12" y1="4.5" x2="18.5" y2="8"/>' +
+  '<line x1="5.5" y1="6.5" x2="9" y2="14"/><line x1="9" y1="14" x2="18.5" y2="8"/>' +
+  '<line x1="9" y1="14" x2="15.5" y2="18.5"/><line x1="18.5" y1="8" x2="15.5" y2="18.5"/>' +
+  '<circle cx="5.5" cy="6.5" r="1.7" fill="currentColor" stroke="none"/>' +
+  '<circle cx="12" cy="4.5" r="1.7" fill="var(--ada-core, #B8E8FC)"/>' +
+  '<circle cx="18.5" cy="8" r="1.7" fill="currentColor" stroke="none"/>' +
+  '<circle cx="9" cy="14" r="1.7" fill="var(--ada-core, #B8E8FC)"/>' +
+  '<circle cx="15.5" cy="18.5" r="1.7" fill="var(--ada-core, #B8E8FC)"/></svg>';
+
+/* Presentación de Ada (datos de la asistente de la cursada). */
+const ADA_INTRO = "Hola, soy Ada, la asistente que creó el equipo Enlace Pedagógico (Clara, Silvia y Lourdes) " +
+  "para la cursada «IA Generativa en el Aula». Me llamo así por Ada Lovelace, reconocida como la primera " +
+  "persona programadora de la historia. En este recorrido te doy pistas: tocame cuando las necesites.";
 
 const Ada = (() => {
   let hint = "";
@@ -21,10 +27,11 @@ const Ada = (() => {
   root.className = "ada";
   root.innerHTML =
     '<div class="ada-bubble" id="ada-bubble" hidden>' +
-      '<span class="ada-name">Ada</span>' +
+      '<span class="ada-name">Ada <small>Asistente de Enlace Pedagógico</small></span>' +
+      '<p class="ada-intro" hidden></p>' +
       '<p class="ada-text"></p>' +
     '</div>' +
-    '<button type="button" class="ada-orb" aria-label="Ada, asistente del recorrido: ver pista" aria-expanded="false" aria-controls="ada-bubble">' +
+    '<button type="button" class="ada-orb" aria-label="Ada, la asistente que creó el equipo: ver pista" aria-expanded="false" aria-controls="ada-bubble">' +
       '<span class="ada-glow" aria-hidden="true"></span>' +
       '<span class="ada-spark s1" aria-hidden="true"></span>' +
       '<span class="ada-spark s2" aria-hidden="true"></span>' +
@@ -36,10 +43,13 @@ const Ada = (() => {
   const orb = root.querySelector(".ada-orb");
   const bubble = root.querySelector(".ada-bubble");
   const textEl = root.querySelector(".ada-text");
+  const introEl = root.querySelector(".ada-intro");
+  introEl.textContent = ADA_INTRO;
 
   function open(text, mood) {
     clearTimeout(timer);
     textEl.textContent = text;
+    introEl.hidden = mood !== "intro";
     root.dataset.mood = mood || "hint";
     bubble.hidden = false;
     orb.setAttribute("aria-expanded", "true");
@@ -63,11 +73,27 @@ const Ada = (() => {
   function setHint(text, isNew) {
     hint = text;
     if (isNew && bubble.hidden) root.classList.add("has-hint");
-    if (!bubble.hidden && root.dataset.mood === "hint") textEl.textContent = hint;
+    if (!bubble.hidden && /hint|intro/.test(root.dataset.mood)) textEl.textContent = hint;
   }
 
+  /* Primera visita de la sesión: Ada se presenta sola y después se retira. */
+  function intro() {
+    let seen = false;
+    try { seen = sessionStorage.getItem("ada-intro") === "1"; } catch (_) {}
+    if (seen) return;
+    try { sessionStorage.setItem("ada-intro", "1"); } catch (_) {}
+    setTimeout(() => {
+      if (!bubble.hidden) return;
+      open(hint, "intro");
+      timer = setTimeout(() => { if (root.dataset.mood === "intro") close(); }, 12000);
+    }, 1200);
+  }
+  /* Mientras se lee (mouse o foco encima), no se cierra sola. */
+  root.addEventListener("pointerenter", () => clearTimeout(timer));
+  root.addEventListener("focusin", () => clearTimeout(timer));
+
   orb.addEventListener("click", () => {
-    if (!bubble.hidden && root.dataset.mood === "hint") close();
+    if (!bubble.hidden && /hint|intro/.test(root.dataset.mood)) close();
     else if (hint) open(hint, "hint");
   });
   document.addEventListener("keydown", (e) => {
@@ -77,5 +103,5 @@ const Ada = (() => {
     if (!bubble.hidden && !root.contains(e.target) && !e.target.closest("[data-act], .door")) close();
   });
 
-  return { say, setHint, close };
+  return { say, setHint, close, intro };
 })();
