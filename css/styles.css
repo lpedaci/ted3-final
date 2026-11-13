@@ -453,10 +453,35 @@ textarea::placeholder { color: var(--gray-dark); }
 }
 
 /* 9. Pie --------------------------------------------------------------------- */
-footer {
-  margin-top: 32px; padding-top: 16px;
-  background: linear-gradient(90deg, var(--gray-deep) 50%, transparent 50%) top / 8px 2px repeat-x;
+footer { margin-top: 28px; }
+.footer-notes {
+  padding: 14px 16px 18px;
+  text-align: center;
+  background: radial-gradient(80% 100% at 50% 50%, rgba(0, 0, 0, .62), rgba(0, 0, 0, .35) 70%, transparent 100%);
 }
+.footer-notes .foot { max-width: 80ch; margin-inline: auto; font-size: .8rem; }
+/* Créditos del equipo: una línea centrada de nombres con sus enlaces */
+.icon-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.profiles {
+  list-style: none; margin: 0 0 14px; padding: 0 0 14px;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 28px;
+  background: linear-gradient(90deg, var(--gray-deep) 50%, transparent 50%) bottom / 8px 2px repeat-x;
+}
+.profiles li { display: flex; align-items: center; gap: 2px; }
+.profile-name { font: 400 1.35rem/1 var(--pixel); letter-spacing: .03em; color: var(--white); margin-right: 4px; }
+.profile-links { display: flex; }
+.profile-links a {
+  display: grid; place-items: center;
+  width: 40px; height: 44px;
+  color: var(--cream);
+  transition: color .1s steps(1), background .1s steps(1);
+}
+.profile-links svg { width: 20px; height: 20px; }
+@media (hover: hover) {
+  .profile-links a:hover { color: var(--black); background: var(--cream); }
+}
+.profile-links a:active { transform: translateY(2px); }
+.profile-links a:focus-visible { outline: 2px dashed var(--white); outline-offset: -2px; }
 .foot { margin: 0; color: var(--ink-soft); font-size: .85rem; }
 .foot + .foot { margin-top: 10px; }
 .foot a { color: inherit; text-decoration-color: var(--orange); text-underline-offset: 2px; }
