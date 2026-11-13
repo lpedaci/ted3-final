@@ -528,7 +528,8 @@ body { padding-bottom: max(104px, env(safe-area-inset-bottom, 0px)); }
 }
 
 /* 9. Pie --------------------------------------------------------------------- */
-footer { margin-top: 28px; }
+footer { margin-top: 56px; }
+@media (min-width: 1024px) { footer { margin-top: 72px; } }
 .footer-notes {
   padding: 14px 16px 18px;
   text-align: center;
