@@ -1,4 +1,4 @@
-/* Las tres puertas · Estado, render de salas e interacción. */
+/* Final de recorrido · Estado, render de salas e interacción. */
 
 const S = {
   room: "entrada",

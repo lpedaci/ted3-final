@@ -1,4 +1,4 @@
-/* Las tres puertas · Avatares del equipo.
+/* Final de recorrido · Avatares del equipo.
    Estilo "Micah" de Micah Lanier (CC BY 4.0), servido por DiceBear. Se piden en PNG
    chico (32 px) y se agrandan con image-rendering: pixelated para que se vean 8 bits. */
 

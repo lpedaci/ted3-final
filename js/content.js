@@ -1,4 +1,4 @@
-/* Las tres puertas · Contenido textual del recorrido (no modificar el texto). */
+/* Final de recorrido · Contenido textual del recorrido (no modificar el texto). */
 
 /* Todo el texto vive en este bloque. */
 const EQUIPO = [

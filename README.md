@@ -1,4 +1,4 @@
-# Las tres puertas · ¿Qué es la LTE?
+# Final de recorrido · ¿Qué es la LTE?
 
 Experiencia de aprendizaje interactiva desarrollada por el **Equipo N.º 7 (Enlace Pedagógico)** como desafío creativo de cierre de *Tecnología Educativa III*, Licenciatura en Tecnología Educativa (UTN, 2026).
 

@@ -1,4 +1,4 @@
-/* Las tres puertas · Puertas y llave dibujadas como pixel art (grilla 24 × 40).
+/* Final de recorrido · Puertas y llave dibujadas como pixel art (grilla 24 × 40).
    Cada puerta se genera por código: arco de ladrillo, abertura iluminada y una hoja
    de madera (grupo .leaf-g) que se abre con la misma animación que antes. */
 
