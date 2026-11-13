@@ -452,6 +452,77 @@ textarea::placeholder { color: var(--gray-dark); }
   to { transform: translate(var(--x), var(--y)); opacity: 0; }
 }
 
+/* Ada: guía flotante ------------------------------------------------------ */
+.ada {
+  position: fixed; z-index: 40;
+  right: max(16px, env(safe-area-inset-right, 0px));
+  bottom: max(16px, env(safe-area-inset-bottom, 0px));
+  display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+  pointer-events: none;
+}
+.ada > * { pointer-events: auto; }
+.ada-orb {
+  position: relative; width: 64px; height: 64px; padding: 0; border: 0; cursor: pointer;
+  background: none; color: var(--white); --ada-core: #24185C;
+  display: grid; place-items: center;
+  animation: ada-float 3.2s ease-in-out infinite;
+  -webkit-tap-highlight-color: transparent;
+}
+.ada-glow {
+  position: absolute; inset: 4px; border-radius: 50%;
+  background: radial-gradient(circle, #FCFCFC 0 22%, #B8E8FC 34%, rgba(60, 188, 252, .55) 52%, rgba(60, 188, 252, 0) 72%);
+  animation: ada-breathe 2.4s ease-in-out infinite;
+}
+.ada-logo { position: relative; width: 34px; height: 34px; color: #0C0C3C; }
+.ada-spark {
+  position: absolute; top: 50%; left: 50%; width: 5px; height: 5px; margin: -2px;
+  background: #FCFCFC; box-shadow: 0 0 6px 2px rgba(184, 232, 252, .9);
+  animation: ada-orbit 2.8s linear infinite;
+}
+.ada-spark.s2 { width: 4px; height: 4px; animation-duration: 3.6s; animation-direction: reverse; background: var(--cream); }
+.ada-alert {
+  position: absolute; top: -2px; right: -2px; width: 22px; height: 22px;
+  display: none; place-items: center;
+  font: 400 20px/1 var(--pixel); color: var(--black); background: var(--orange);
+  box-shadow: 0 0 0 2px var(--black);
+  animation: blink .8s steps(2) infinite;
+}
+.ada.has-hint .ada-alert { display: grid; }
+.ada-orb:focus-visible { outline: 2px dashed var(--white); outline-offset: 4px; border-radius: 50%; }
+.ada.cheer .ada-orb { animation: ada-cheer .7s steps(7), ada-float 3.2s ease-in-out .7s infinite; }
+.ada.worry .ada-orb { animation: shake .35s steps(4) 2, ada-float 3.2s ease-in-out .7s infinite; }
+.ada.worry .ada-glow { background: radial-gradient(circle, #FCFCFC 0 22%, #FCC0A8 34%, rgba(228, 64, 40, .5) 52%, rgba(228, 64, 40, 0) 72%); }
+
+.ada-bubble {
+  position: relative;
+  width: min(340px, calc(100vw - 32px));
+  padding: 14px 16px 16px;
+  background: var(--panel);
+  clip-path: var(--notch);
+  box-shadow: inset 0 0 0 2px var(--black), inset 0 0 0 4px #B8E8FC, inset 0 0 0 6px var(--black);
+  animation: rise .25s steps(3) both;
+}
+.ada[data-mood="key"] .ada-bubble { box-shadow: inset 0 0 0 2px var(--black), inset 0 0 0 4px var(--green-hi), inset 0 0 0 6px var(--black); }
+.ada[data-mood="error"] .ada-bubble { box-shadow: inset 0 0 0 2px var(--black), inset 0 0 0 4px var(--red-text), inset 0 0 0 6px var(--black); }
+.ada-name { display: block; font: 400 18px/1 var(--pixel); letter-spacing: .12em; text-transform: uppercase; color: #B8E8FC; margin-bottom: 6px; }
+.ada[data-mood="key"] .ada-name { color: var(--green-hi); }
+.ada[data-mood="error"] .ada-name { color: var(--red-text); }
+.ada-text { margin: 0; font-size: 15px; line-height: 1.45; color: var(--white); }
+
+@keyframes ada-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes ada-breathe { 0%, 100% { transform: scale(.92); opacity: .9; } 50% { transform: scale(1.06); opacity: 1; } }
+@keyframes ada-orbit {
+  from { transform: rotate(0deg) translateX(30px) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(30px) rotate(-360deg); }
+}
+@keyframes ada-cheer { 0% { transform: translateY(0) rotate(0); } 30% { transform: translateY(-18px) rotate(-12deg); } 60% { transform: translateY(-6px) rotate(10deg); } 100% { transform: none; } }
+/* Espacio al final para que Ada no tape el pie */
+body { padding-bottom: max(104px, env(safe-area-inset-bottom, 0px)); }
+@media (max-width: 599px) {
+  .ada-orb { width: 56px; height: 56px; }
+  .ada-logo { width: 30px; height: 30px; }
+}
+
 /* 9. Pie --------------------------------------------------------------------- */
 footer { margin-top: 28px; }
 .footer-notes {

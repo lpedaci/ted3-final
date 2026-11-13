@@ -73,6 +73,7 @@ function updateChrome() {
       el.classList.add("pop");
       burst(el);
       announce(T[id].ganada);
+      if (typeof Ada !== "undefined") Ada.say(T[id].ganada, "key");
     }
   });
 }
@@ -203,7 +204,26 @@ function renderRoom() {
   }
 }
 
-function refresh() { renderRoom(); updateChrome(); }
+/* Pista que Ada ofrece en cada momento (textos del recorrido). */
+function hintFor() {
+  if (S.room === "entrada") return T.entrada.pista;
+  if (S.room === "f") {
+    const n = gotCount();
+    if (n < 3) return T.f.cerrada + " " + faltan(3 - n) + ".";
+    return S.f.opened ? T.f.invitacion : T.f.lista;
+  }
+  return T[S.room].pregunta;
+}
+let hintRoom = null;
+function refresh() {
+  renderRoom();
+  updateChrome();
+  if (typeof Ada !== "undefined") {
+    const key = S.room + (S.room === "f" ? ":" + gotCount() + ":" + S.f.opened : "");
+    Ada.setHint(hintFor(), key !== hintRoom);
+    hintRoom = key;
+  }
+}
 
 doorsEl.addEventListener("click", (e) => {
   const b = e.target.closest(".door");
@@ -231,7 +251,7 @@ roomEl.addEventListener("click", (e) => {
   } else if (a === "frag") {
     if (S.d.seq.includes(i)) return;
     if (i === S.d.seq.length) { S.d.seq.push(i); S.d.err = false; }
-    else { S.d.err = true; S.d.shake = i; announce(T.d.error); }
+    else { S.d.err = true; S.d.shake = i; announce(T.d.error); if (typeof Ada !== "undefined") Ada.say(T.d.error, "error"); }
   } else if (a === "sw") {
     S.p.on[i] = !S.p.on[i];
   } else if (a === "open") {

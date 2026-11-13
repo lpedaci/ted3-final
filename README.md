@@ -28,6 +28,7 @@ Decisiones que sostienen la propuesta:
 - **Recorrido no lineal.** Las tres primeras puertas pueden abrirse en cualquier orden, lo que respeta los tiempos y la curiosidad de cada persona.
 - **Retroalimentación inmediata.** Cada acción tiene respuesta visible: la reformulación aparece al elegir una certeza, un error de secuencia se señala sin penalizar y la llave conseguida se anuncia en el momento.
 - **Progreso explícito.** El inventario de llaves funciona como indicador de avance y como meta clara; la puerta final permanece cerrada hasta reunir las tres.
+- **Andamiaje con Ada.** Ada, la asistente que el equipo creó para las actividades, acompaña el recorrido como guía flotante: ofrece la consigna de la sala cuando se la consulta (un «!» indica que hay una pista nueva), celebra cada llave y señala los errores de secuencia. Retoma los textos del recorrido, sin sumar consignas nuevas, y su ayuda es opcional.
 - **Cierre productivo.** La experiencia termina con una producción propia (la frase personal sobre la LTE), que se puede copiar y compartir.
 - **Marco conceptual.** La propuesta se apoya en el modelo TPACK (Koehler y Mishra, 2009): la tecnología cobra sentido en relación con las decisiones pedagógicas y disciplinares de quien enseña.
 
@@ -63,6 +64,7 @@ Decisiones que sostienen la propuesta:
 │   ├── content.js      Contenido textual del recorrido (EQUIPO y T)
 │   ├── avatars.js      Avatares del equipo
 │   ├── doors.js        Puertas y llave en pixel art (SVG generado por código)
+│   ├── ada.js          Ada, asistente del equipo, como guía flotante
 │   └── app.js          Estado, render de cada sala e interacción
 ├── assets/
 │   ├── favicon.svg         Ícono de la pestaña
