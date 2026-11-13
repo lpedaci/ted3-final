@@ -1,0 +1,16 @@
+{
+  "name": "Final de recorrido · ¿Qué es la LTE?",
+  "short_name": "Final de recorrido",
+  "description": "Una respuesta en forma de recorrido, escrita por tres docentes de niveles distintos que trabajaron juntas todo el cuatrimestre como Equipo N.º 7.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#04041C",
+  "theme_color": "#04041C",
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

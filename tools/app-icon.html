@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>app-icon · Final de recorrido</title>
+<!-- Fuente del ícono para pantallas de inicio (assets/icon-512.png y derivados). -->
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  html, body { width: 512px; height: 512px; overflow: hidden; }
+  body {
+    display: grid; place-items: center;
+    background: linear-gradient(180deg, #04041C 0 45%, #0C0C3C 45% 65%, #24185C 65% 80%, #44186C 80% 100%);
+  }
+  svg { width: 236px; height: auto; display: block; overflow: visible; filter: drop-shadow(0 0 26px rgba(252, 216, 124, .45)); }
+  .lock { display: inline; }
+  .pool { opacity: 1; }
+</style>
+</head>
+<body>
+  <div id="door"></div>
+  <script src="../js/doors.js"></script>
+  <script>document.getElementById("door").innerHTML = doorSVG("f");</script>
+</body>
+</html>

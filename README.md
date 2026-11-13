@@ -52,7 +52,11 @@ Decisiones que sostienen la propuesta:
 
 ```
 .
-├── index.html          Página principal: marcado, escena de fondo y contenedores
+├── index.html          Página principal: marcado, metadatos SEO y contenedores
+├── 404.html            Página de error con la estética del sitio
+├── robots.txt          Indicaciones para buscadores
+├── sitemap.xml         Mapa del sitio
+├── site.webmanifest    Manifiesto (nombre, colores e íconos al instalar)
 ├── css/
 │   └── styles.css      Estilos: paleta, escena, HUD, puertas, salas y responsive
 ├── js/
@@ -61,7 +65,12 @@ Decisiones que sostienen la propuesta:
 │   ├── doors.js        Puertas y llave en pixel art (SVG generado por código)
 │   └── app.js          Estado, render de cada sala e interacción
 ├── assets/
-│   └── favicon.svg     Ícono de la pestaña
+│   ├── favicon.svg         Ícono de la pestaña
+│   ├── og-card.png         Imagen para compartir en redes (1200 × 630)
+│   ├── icon-192.png        Ícono para Android
+│   ├── icon-512.png        Ícono para Android e instalación
+│   └── apple-touch-icon.png Ícono para iPhone y iPad (180 × 180)
+├── tools/              Fuentes HTML de la og-card y del ícono (no se indexan)
 └── README.md
 ```
 
@@ -72,6 +81,15 @@ El contenido está separado de la presentación y de la lógica: para editar tex
 - Abrir `index.html` en el navegador, o servir la carpeta con un servidor estático (por ejemplo, `python -m http.server`).
 - Publicación en GitHub Pages desde la rama `main`, carpeta raíz. Cualquier hosting estático es compatible.
 - Los enlaces a CSS y JS llevan un número de versión (`?v=`) para que los navegadores descarguen los cambios nuevos.
+
+## Buscadores y redes
+
+- **Metadatos:** título, descripción, URL canónica y `robots`.
+- **Open Graph y X/Twitter:** al compartir el enlace se muestra la og-card con título, descripción y texto alternativo.
+- **Datos estructurados:** JSON-LD de tipo `LearningResource`, con la materia, la universidad y las tres autoras con sus perfiles.
+- **`robots.txt` y `sitemap.xml`:** permiten indexar el sitio y excluyen la carpeta `tools/`.
+- **Imagen para redes:** `tools/og-card.html` se renderiza a `assets/og-card.png` con Chrome sin ventana, por ejemplo:
+  `chrome --headless=new --window-size=1200,630 --screenshot=assets/og-card.png tools/og-card.html`
 
 ## Equipo
 
