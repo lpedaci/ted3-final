@@ -1,0 +1,9 @@
+# Configuración local de herramientas (no es parte del sitio)
+.claude/
+
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
