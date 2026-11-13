@@ -136,7 +136,7 @@ h1 {
   margin: 14px 0 14px;
   color: var(--white);
 }
-.lede { max-width: 58ch; margin: 0; color: var(--ink-soft); }
+.lede { margin: 0; color: var(--ink-soft); }
 
 /* Selección de personajes */
 .team {
@@ -297,7 +297,7 @@ h1 {
 }
 .room h2:focus { outline: none; }
 .room h2:focus-visible { outline: 2px dashed var(--white); outline-offset: 4px; }
-.room p { margin: 0; max-width: 62ch; }
+.room p { margin: 0; }
 
 .note { font: 400 1.49rem/1.3 var(--pixel); letter-spacing: .03em; color: var(--cream); }
 .note::before { content: "▶ "; content: "▶ " / ""; color: var(--cursor); animation: blink .8s steps(2) infinite; }
@@ -411,7 +411,7 @@ h1 {
   margin: 0;
   font: 400 clamp(1.69rem, 6.5vw, 2.21rem)/1.4 var(--pixel);
   letter-spacing: .02em;
-  text-wrap: balance;
+  text-wrap: pretty;
   color: var(--cream);
 }
 .answer::before {
@@ -459,7 +459,7 @@ footer { margin-top: 28px; }
   text-align: center;
   background: radial-gradient(80% 100% at 50% 50%, rgba(0, 0, 0, .62), rgba(0, 0, 0, .35) 70%, transparent 100%);
 }
-.footer-notes .foot { max-width: 110ch; margin-inline: auto; font-size: .8rem; }
+.footer-notes .foot { font-size: .8rem; }
 /* Créditos del equipo: una línea centrada de nombres con sus enlaces */
 .icon-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 .profiles {
@@ -499,6 +499,9 @@ footer { margin-top: 28px; }
   .key svg { width: 12px; height: 12px; }
   .meter { display: none; }
   .avatar { width: 40px; height: 40px; }
+  .room { padding: 24px 16px 30px; }
+  .reveal { padding-left: 12px; }
+  .voice { padding: 14px 12px; }
   .door-label { padding: 6px 3px 3px; }
   .door-state { padding: 2px 3px 6px; }
 }
@@ -530,7 +533,10 @@ footer { margin-top: 28px; }
   .door-label { font-size: 22px; }
   .door-state { font-size: 19px; }
   .room { padding: 38px 42px 42px; }
-  .room p, .room .reveal { max-width: 70ch; }
+  /* Con líneas más largas, un punto más de cuerpo para mantener la lectura cómoda */
+  .lede, .room p, .choice, .frag, .sw, .recap li, .voice p, textarea { font-size: 17px; }
+  .after { font-size: 1.2rem; }
+  .footer-notes .foot { font-size: .85rem; }
 }
 /* Celular en horizontal */
 @media (max-height: 480px) and (orientation: landscape) {
