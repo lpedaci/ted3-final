@@ -481,12 +481,15 @@ textarea::placeholder { color: var(--gray-dark); }
 }
 .ada-spark.s2 { width: 4px; height: 4px; animation-duration: 3.6s; animation-direction: reverse; background: var(--cream); }
 .ada-alert {
-  position: absolute; top: -2px; right: -2px; width: 22px; height: 22px;
+  position: absolute; top: 0; right: 0; width: 20px; height: 20px;
   display: none; place-items: center;
-  font: 400 20px/1 var(--pixel); color: var(--black); background: var(--orange);
-  box-shadow: 0 0 0 2px var(--black);
-  animation: blink .8s steps(2) infinite;
+  border-radius: 50%;
+  font: 400 17px/1 var(--pixel); color: #0C0C3C;
+  background: radial-gradient(circle at 35% 30%, #FFFFFF, var(--cream) 70%);
+  box-shadow: 0 0 0 2px rgba(12, 12, 60, .9), 0 0 10px 2px rgba(252, 224, 168, .75);
+  animation: ada-ping 1.6s ease-in-out infinite;
 }
+@keyframes ada-ping { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
 .ada.has-hint .ada-alert { display: grid; }
 .ada-orb:focus-visible { outline: 2px dashed var(--white); outline-offset: 4px; border-radius: 50%; }
 .ada.cheer .ada-orb { animation: ada-cheer .7s steps(7), ada-float 3.2s ease-in-out .7s infinite; }
